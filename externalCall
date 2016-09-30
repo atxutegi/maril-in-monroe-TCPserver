@@ -1,0 +1,2 @@
+ssh -o "StrictHostKeyChecking no" a@b.com 'sh maril-in-monroe-TCPserver/testLauncher.sh `wget http://ipinfo.io/ip -qO -` `date '+%F_%H-%M-%S'`  < /dev/null > /dev/null 2>&1'
+ssh -o "StrictHostKeyChecking no" a@b.com 'sh maril-in-monroe-TCPserver/testKiller.sh'
