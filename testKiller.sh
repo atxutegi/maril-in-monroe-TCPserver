@@ -1,4 +1,5 @@
 #!/bin/sh
+#$1=NodeID $2=Operator
 cd /home/operario/maril-in-monroe-TCPserver
 first=`ps -ef | grep '[ssTra]ce' | head -1 |awk '{print $2}'`
 nameFolder=`ps -ef | grep 'ssTrace' | awk '{print $11}' | head -1`
@@ -13,16 +14,18 @@ then
 	chmod 777 "$nameFolder"*
 	editcap -C 122:1420 "$nameFolder".pcap "$nameFolder"_strip.pcap
 	chmod 777 "$nameFolder"_strip.pcap
-	mkdir -p "$nameFolder"_"$ip"_folder
-	mv "$nameFolder"*.pcap "$nameFolder"_"$ip"_folder/
-	mv "$nameFolder"*.txt "$nameFolder"_"$ip"_folder/
-	mv output* "$nameFolder"_"$ip"_folder/
+	mkdir -p "$nameFolder"_"$ip"_"$1"_"$2"_folder
+	mv "$nameFolder".pcap "$nameFolder"_"$ip"_"$1"_"$2"_folder/"$nameFolder"_"$ip"_"$1"_"$2".pcap
+	mv "$nameFolder"_strip.pcap "$nameFolder"_"$ip"_"$1"_"$2"_folder/"$nameFolder"_"$ip"_"$1"_"$2"_strip.pcap
+	mv "$nameFolder"_ss.txt "$nameFolder"_"$ip"_"$1"_"$2"_folder/"$nameFolder"_"$ip"_"$1"_"$2"_ss.txt
+	mv output* "$nameFolder"_"$ip"_"$1"_"$2"_folder/
 else
 	nameFail=`ls | grep '\.pcap' |sed 's/\.pcap//'`
 	editcap -C 122:1420 "$nameFail".pcap "$nameFail"_strip.pcap
         chmod 777 "$nameFail"_strip.pcap
-        mkdir -p "$nameFail"_FailedFolder
-        mv "$nameFail"*.pcap "$nameFail"_FailedFolder/
-        mv "$nameFail"*.txt "$nameFail"_FailedFolder/
+        mkdir -p "$nameFail"_"$1"_"$2"_FailedFolder
+        mv "$nameFail".pcap "$nameFail"_"$1"_"$2"_FailedFolder/"$nameFail"_"$1"_"$2".pcap
+	mv "$nameFail"_strip.pcap "$nameFail"_"$1"_"$2"_FailedFolder/"$nameFail"_"$1"_"$2"_strip.pcap
+        mv "$nameFail"_ss.txt "$nameFail"_"$1"_"$2"_FailedFolder/"$nameFail"_"$1"_"$2"_ss.txt
 
 fi
