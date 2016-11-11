@@ -1,6 +1,6 @@
 #!/bin/sh
 #$1=NodeID $2=Operator
-cd /home/operario/maril-in-monroe-TCPserver
+cd ~/maril-in-monroe-TCPserver
 echo "My naming parameters $1 $2"
 first=`ps -ef | grep '[ssTra]ce' | head -1 |awk '{print $2}'`
 nameFolder=`ps -ef | grep 'ssTrace' | awk '{print $11}' | head -1`
