@@ -1,5 +1,4 @@
 #!/bin/sh
-tcpdump
 #i=0
 #base=1
 while true 
