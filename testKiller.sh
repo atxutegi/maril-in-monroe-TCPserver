@@ -18,21 +18,21 @@ then
 	chmod 777 "$nameFolder"*
 	editcap -C 122:1420 "$nameFolder".pcap "$nameFolder"_strip.pcap
 	chmod 777 "$nameFolder"_strip.pcap
-	mkdir -p "$nameFolder"_"$ip"_"$1"_"$2"_folder
-	mv "$nameFolder".pcap "$nameFolder"_"$ip"_"$1"_"$2"_folder/"$nameFolder"_"$ip"_"$1"_"$2".pcap
-	mv "$nameFolder"_strip.pcap "$nameFolder"_"$ip"_"$1"_"$2"_folder/"$nameFolder"_"$ip"_"$1"_"$2"_strip.pcap
-	mv "$nameFolder"_ss.txt "$nameFolder"_"$ip"_"$1"_"$2"_folder/"$nameFolder"_"$ip"_"$1"_"$2"_ss.txt
-	mv output* "$nameFolder"_"$ip"_"$1"_"$2"_folder/
+	mkdir -p "$nameFolder"_"$ip"_"$1"_"$2"_"$3"_folder
+	mv "$nameFolder".pcap "$nameFolder"_"$ip"_"$1"_"$2"_"$3"_folder/"$nameFolder"_"$ip"_"$1"_"$2"_"$3".pcap
+	mv "$nameFolder"_strip.pcap "$nameFolder"_"$ip"_"$1"_"$2"_"$3"_folder/"$nameFolder"_"$ip"_"$1"_"$2"_"$3"_strip.pcap
+	mv "$nameFolder"_ss.txt "$nameFolder"_"$ip"_"$1"_"$2"_"$3"_folder/"$nameFolder"_"$ip"_"$1"_"$2"_"$3"_ss.txt
+	mv output* "$nameFolder"_"$ip"_"$1"_"$2"_"$3"_folder/
 	nameModel=`ls ../maril-in-monroe-Model-based/"$year"/"$month"/"$day"/*serverdata | tail -1 | cut -d . -f 4 | cut -d _ -f 1`
-	cp ../maril-in-monroe-Model-based/"$year"/"$month"/"$day"/*"$nameModel"* "$nameFolder"_"$ip"_"$1"_"$2"_folder/
+	#cp ../maril-in-monroe-Model-based/"$year"/"$month"/"$day"/*"$nameModel"* "$nameFolder"_"$ip"_"$1"_"$2"_folder/
 else
 	nameFail=`ls | grep '\.pcap' |sed 's/\.pcap//'`
 	editcap -C 122:1420 "$nameFail".pcap "$nameFail"_strip.pcap
         chmod 777 "$nameFail"_strip.pcap
-        mkdir -p "$nameFail"_"$1"_"$2"_FailedFolder
-        mv "$nameFail".pcap "$nameFail"_"$1"_"$2"_FailedFolder/"$nameFail"_"$1"_"$2".pcap
-	mv "$nameFail"_strip.pcap "$nameFail"_"$1"_"$2"_FailedFolder/"$nameFail"_"$1"_"$2"_strip.pcap
-        mv "$nameFail"_ss.txt "$nameFail"_"$1"_"$2"_FailedFolder/"$nameFail"_"$1"_"$2"_ss.txt
+        mkdir -p "$nameFail"_"$1"_"$2"_"$3"_FailedFolder
+        mv "$nameFail".pcap "$nameFail"_"$1"_"$2"_"$3"_FailedFolder/"$nameFail"_"$1"_"$2"_"$3".pcap
+	mv "$nameFail"_strip.pcap "$nameFail"_"$1"_"$2"_"$3"_FailedFolder/"$nameFail"_"$1"_"$2"_"$3"_strip.pcap
+        mv "$nameFail"_ss.txt "$nameFail"_"$1"_"$2"_"$3"_FailedFolder/"$nameFail"_"$1"_"$2"_"$3"_ss.txt
 	nameModel=`ls ../maril-in-monroe-Model-based/"$year"/"$month"/"$day"/*serverdata | tail -1 | cut -d . -f 4 | cut -d _ -f 1`
-	cp ../maril-in-monroe-Model-based/"$year"/"$month"/"$day"/*"$nameModel"* "$nameFail"_"$1"_"$2"_FailedFolder/
+	#cp ../maril-in-monroe-Model-based/"$year"/"$month"/"$day"/*"$nameModel"* "$nameFail"_"$1"_"$2"_FailedFolder/
 fi
