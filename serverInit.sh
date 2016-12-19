@@ -1,7 +1,8 @@
 #!/bin/sh
-sudo ethtool -K eth0 tso off
-sudo ethtool -K eth0 gro off
-sudo ethtool -K eth0 gso off
+#sudo ethtool -K eth0 tso off
+#sudo ethtool -K eth0 gro off
+#sudo ethtool -K eth0 gso off
+#sudo ethtool -K eth0 tso on && sudo ethtool -K eth0 gro on && sudo ethtool -K eth0 gso on
 
 sudo sysctl -w net.ipv4.tcp_no_metrics_save=1 #no TCP record of previous connections whatsoever
 sudo /sbin/modprobe tcp_hybla
